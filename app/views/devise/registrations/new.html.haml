@@ -1,0 +1,23 @@
+%div.log_in 
+  %h2.log Sign up
+  = simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+    = f.error_notification
+    .form-group
+      = f.label :email
+      = f.email_field :email, required: false, class: 'form-control', autofocus: true
+    .form-group
+      = f.label :password
+      - if @minimum_password_length
+        %em
+          (#{@minimum_password_length} characters minimum)
+      %br/
+      = f.password_field :password, class: 'form-control', autocomplete: "off"
+    .form-group
+      = f.label :password_confirmation
+      %br/
+      = f.password_field :password_confirmation, class: 'form-control', autocomplete: "off"
+    .form-group
+      = f.input :remember_me, as: :boolean if devise_mapping.rememberable?
+    .actions
+      = f.submit "Sign up",  class: "btn btn-default"
+  = render "devise/shared/links"

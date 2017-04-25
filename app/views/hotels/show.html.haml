@@ -1,0 +1,41 @@
+.row
+  .col-md-4
+    .user_logo
+      - if @hotel.photo.present?
+        = image_tag(@hotel.photo_url(:thumb))
+  .col-md-4
+    %p #{@hotel.title}
+    %p #{@hotel.address}
+    %p #{@hotel.room_description}
+    %p #{@hotel.price}
+    - case @hotel.breakfast 
+      - when true
+        %p Breakfast included
+      - else
+        %p Without breakfast
+/ .row
+/   %h4 Feedbacks:
+/   - @hotel.feedbacks.each do |feedback|
+/     %p
+/       %strong User name:
+/       = feedback.sender.user_name
+/     %p
+/       %strong Feedback:
+/       = feedback.body
+/   %h4 Add a feedback:
+/   = simple_form_for(@feedbacks) do |f|
+/     %p
+/       %strong User name
+/       %br
+/         = f.text_field :user_name
+/         = f.hidden_field :sender_id, value: current_user.id
+/     %p
+/       = f.label :body
+/       %br
+/         = f.text_area :body
+/     %p
+/       = f.submit
+/   = link_to 'Edit', edit_hotel_path(@hotel)
+/   |
+/   \#{link_to 'Back', hotels_path}
+

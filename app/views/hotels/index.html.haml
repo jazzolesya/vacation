@@ -1,0 +1,20 @@
+- @hotels.each  do |hotel|
+  - if hotel.photo.present?
+    = image_tag(hotel.photo_url(:thumb))
+  %p
+    = hotel.id
+  %p
+    = hotel.title
+  %p
+    = hotel.address
+  %p
+    = hotel.room_description
+  %p
+    = hotel.price
+  %p
+    - case hotel.breakfast 
+      - when true
+        %p Breakfast included
+      - else
+        %p No breakfast
+        

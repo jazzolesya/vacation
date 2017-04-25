@@ -1,0 +1,23 @@
+.row
+  .box
+    .col-lg-12
+      %hr/
+      %h2.intro-text.text-center
+        %strong New Hotel
+      %hr/
+    .col-md-12
+      = simple_form_for @hotel, html: { class: 'form-horizontal'} do |f|
+        = f.error_notification
+        = f.label :title
+        = f.text_field :title, required: false, class: 'form-control', autofocus: true
+        = f.input :address, :placeholder => "e.g. City, Country", input_html: { id: 'geocomplete_country'}, class: 'form-control', autofocus: true, id: "close-form"
+        = f.label :room_description
+        = f.text_area :room_description, required: false, class: 'form-control', autofocus: true
+        = f.label :price
+        = f.text_field :price, required: false, class: 'form-control', autofocus: true
+        = f.label :breakfast
+        = f.check_box :breakfast, include_hidden: true
+        = f.file_field :photo
+
+        .actions
+          = f.submit "Save",  class: "btn btn-default"

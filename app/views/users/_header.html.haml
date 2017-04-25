@@ -1,0 +1,40 @@
+%nav.navbar.navbar-default.navbar-static-top
+  .container
+    .navbar-header
+      %button.navbar-toggle.collapsed{"aria-controls" => "navbar", "aria-expanded" => "false", "data-target" => "#navbar", "data-toggle" => "collapse", :type => "button"}
+        %span.sr-only Toggle navigation
+        %span.icon-bar
+        %span.icon-bar
+        %span.icon-bar
+
+      %a.navbar-brand.name-of-the-project{:href => "#"} your perfect vacation
+    #navbar.navbar-collapse.collapse
+      %ul.nav.navbar-nav
+        %li.active
+          %a{:href => "#"} Home
+        %li
+          %a{:href => "#about"} About
+        %li
+          %a{:href => "#contact"} Contact
+      %ul.nav.navbar-nav.navbar-right
+        %li
+          %a{:href => "hotels/index"} Hotels
+        %li
+          %a{:href => "../navbar-static-top/"} Static top
+        - if user_signed_in?
+          %li.dropdown
+            %a.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
+              My account
+              %span.caret
+            %ul.dropdown-menu
+              %li
+                %a{:href => "hotels/new"} Add hotel
+              %li.divider{:role => "separator"}
+              %li
+                = link_to "Sign out", destroy_user_session_path, :method=>'delete'
+        - else
+          %li
+            = link_to "Sign in", new_user_session_path
+
+
+    / /.nav-collapse
